@@ -122,6 +122,9 @@
 ;; Mark additions/deletions in a git repo, on the margin
 (require 'git-gutter-fringe)
 (global-git-gutter-mode t)
+(set-face-foreground 'git-gutter-fr:modified "yellow")
+(set-face-foreground 'git-gutter-fr:added    "#006600")
+(set-face-foreground 'git-gutter-fr:deleted  "#660000")
 
 ;; Load speedbar in the same frame, do not refresh it
 ;; automatically
