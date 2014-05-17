@@ -1,9 +1,9 @@
 
-# Emacs configuration file for programming, mostly in R and C/C++
+### Emacs configuration file for programming, mostly in R and C/C++
 
 ![](screenshot-1.png)
 
-## Features
+#### Features
 
 - Dark theme.
 - Bare look to minimize clutter on screen, no menu bar, no toolbar,
@@ -18,5 +18,5 @@
 - Code folding.
 - Open a file from anywhere in the current git repository.
 - Mark git changes on the left margin.
-- Maximize frame on startup
+- Maximize frame on startup.
 
