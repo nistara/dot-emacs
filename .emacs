@@ -213,8 +213,10 @@
 ;; Pretty arrows and magrittr pipes in R
 (defvar pretty-alist
   (cl-pairlis '() '()))
-(add-to-list 'pretty-alist '("%>%" . "⇛"))
-(add-to-list 'pretty-alist '("<-" . "⇐"))
+(add-to-list 'pretty-alist '("%>%" . "⇉"))
+(add-to-list 'pretty-alist '("<-" . "←"))
+(add-to-list 'pretty-alist '("->" . "→"))
+(add-to-list 'pretty-alist '("<<-" . "↞"))
 (defun pretty-things ()
   (mapc
    (lambda (x)
@@ -235,13 +237,13 @@
                  nil)))))))
    pretty-alist))
 
-(add-hook 'R-mode-hook
+(add-hook 'ess-mode-hook
 	  (lambda ()
 	    (font-lock-add-keywords nil
                  '(("\\(%>%\\)" 1
                     font-lock-builtin-face t)))))
 
-(add-hook 'R-mode-hook 'pretty-things)
+(add-hook 'ess-mode-hook 'pretty-things)
 
 (define-key ess-mode-map [(super .)] "%>%")
 
