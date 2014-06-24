@@ -3,6 +3,8 @@
 
 ![](screenshot-1.png)
 
+![](screenshot-2.png)
+
 #### Features
 
 - Dark theme.
@@ -19,4 +21,4 @@
 - Open a file from anywhere in the current git repository.
 - Mark git changes on the left margin.
 - Maximize frame on startup.
-
+- Good looking `<-` and `%>%` operators in R mode.
