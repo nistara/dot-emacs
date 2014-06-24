@@ -78,7 +78,9 @@
 (load-theme 'deeper-blue)
 
 ;; set all windows (emacs's "frame") to use font DejaVu Sans Mono
-(set-frame-parameter nil 'font "DejaVu Sans Mono-11")
+(set-frame-font "DejaVu Sans Mono-11" t t)
+(when (member "Symbola" (font-family-list))
+  (set-fontset-font t 'unicode "Symbola" nil 'prepend))
 
 ;; no toolbar
 (tool-bar-mode -1)
