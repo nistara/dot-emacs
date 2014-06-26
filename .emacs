@@ -303,3 +303,11 @@
       `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
+
+;; Better looking terminal windows
+;; Space after line numbers
+(when (not(display-graphic-p)) (add-hook 'window-configuration-change-hook
+					 (lambda ()
+					   (setq linum-format "%4d "))))
+;; Turn off menu bar
+(menu-bar-mode -1)
