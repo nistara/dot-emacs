@@ -297,3 +297,9 @@
 ;; Better buffer names
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
+
+;; Put backup files in temporary directory
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
