@@ -242,7 +242,7 @@
 (projectile-global-mode)
 
 ;; Save window configuration
-(desktop-save-mode 1)
+;; (desktop-save-mode 1)
 
 ;; Pretty arrows and magrittr pipes in R
 (defvar pretty-alist
