@@ -166,7 +166,7 @@
 ;; automatically
 (require 'sr-speedbar)
 (add-hook 'speedbar-mode-hook (lambda () (linum-mode -1)))
-(sr-speedbar-open)
+;; (sr-speedbar-open)
 (sr-speedbar-refresh-turn-off)
 
 ;; ???
