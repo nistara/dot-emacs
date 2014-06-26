@@ -293,3 +293,7 @@
   (highlight-parentheses-mode t))
 (add-hook 'ess-mode-hook 'hpm-on)
 (add-hook 'inferior-ess-mode-hook 'hpm-on)
+
+;; Better buffer names
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'post-forward-angle-brackets)
