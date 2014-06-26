@@ -278,8 +278,12 @@
                     font-lock-builtin-face t)))))
 
 (add-hook 'ess-mode-hook 'pretty-things)
+(add-hook 'inferior-ess-mode-hook 'pretty-things)
 
 (define-key ess-mode-map [(super .)] "%>%")
+(add-hook 'inferior-ess-mode-hook
+          '(lambda()
+             (local-set-key [(super .)] "%>%")))
 
 ;; Highlight matching parentheses
 (require 'highlight-parentheses)
