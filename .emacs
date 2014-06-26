@@ -5,7 +5,41 @@
 ; ess, to set indentation to two spaces
 (setq ess-default-style 'DEFAULT)
 (setq ess-indent-level 2)
+
+;; Magical shift+ENTER
+;; http://kieranhealy.org/blog/archives/2009/10/12/make-shift-enter-do-a-lot-in-ess/
+(setq ess-ask-for-ess-directory nil)
+(setq ess-local-process-name "R")
+(setq ansi-color-for-comint-mode 'filter)
+(defun my-ess-start-R ()
+  (interactive)
+  (if (not (member "*R*" (mapcar (function buffer-name) (buffer-list))))
+      (progn
+        (delete-other-windows)
+        (setq w1 (selected-window))
+        (setq w1name (buffer-name))
+        (setq w2 (split-window w1 nil t))
+        (R)
+        (set-window-buffer w2 "*R*")
+        (set-window-buffer w1 w1name))))
+(defun my-ess-eval ()
+  (interactive)
+  (my-ess-start-R)
+  (if (and transient-mark-mode mark-active)
+      (call-interactively 'ess-eval-region)
+    (call-interactively 'ess-eval-line-and-step)))
+(add-hook 'ess-mode-hook
+          '(lambda()
+             (local-set-key [(shift return)] 'my-ess-eval)))
+(add-hook 'inferior-ess-mode-hook
+          '(lambda()
+             (local-set-key [up] 'comint-previous-input)
+             (local-set-key [down] 'comint-next-input)))
+(add-hook 'Rnw-mode-hook
+          '(lambda()
+             (local-set-key [(shift return)] 'my-ess-eval)))
 (require 'ess-site)
+
 ; Do not replace _ with <-
 (ess-toggle-underscore nil)
 
@@ -140,9 +174,9 @@
 
 (eval-after-load "comint"
 	'(progn
-		 (define-key comint-mode-map [up]
+		 (define-key comint-mode-map [C-up]
 			 'comint-previous-matching-input-from-input)
-		 (define-key comint-mode-map [down]
+		 (define-key comint-mode-map [C-down]
 			 'comint-next-matching-input-from-input)
      
 		 ;; also recommended for ESS use --
