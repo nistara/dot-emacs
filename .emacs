@@ -315,4 +315,4 @@
 					 (lambda ()
 					   (setq linum-format "%4d "))))
 ;; Turn off menu bar
-(menu-bar-mode -1)
+(when (not(display-graphic-p)) (menu-bar-mode -1))
