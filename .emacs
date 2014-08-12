@@ -316,3 +316,6 @@
 					   (setq linum-format "%4d "))))
 ;; Turn off menu bar
 (when (not(display-graphic-p)) (menu-bar-mode -1))
+
+(require 'expand-region)
+(global-set-key (kbd "C-=") 'er/expand-region)
