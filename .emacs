@@ -214,7 +214,7 @@
 
 (defun my-common-hook ()
   ;; my customizations for all of c-mode and related modes
-  (fci-mode)
+  (when (display-graphic-p) (fci-mode nil))
   (linum-mode 1)
   )
 (add-hook 'prog-mode-hook 'my-common-hook)
@@ -285,8 +285,8 @@
                  '(("\\(\\$\\)" 1
                     font-lock-comment-delimiter-face t)))))
 
-(add-hook 'ess-mode-hook 'pretty-things)
-(add-hook 'inferior-ess-mode-hook 'pretty-things)
+(when (display-graphic-p) (add-hook 'ess-mode-hook 'pretty-things))
+(when (display-graphic-p) (add-hook 'inferior-ess-mode-hook 'pretty-things))
 
 (define-key ess-mode-map [(super .)] "%>%")
 (add-hook 'inferior-ess-mode-hook
