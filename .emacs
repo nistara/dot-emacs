@@ -322,3 +322,5 @@
 
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/egg"))
 (require 'egg)
+
+(load "editorconfig")
