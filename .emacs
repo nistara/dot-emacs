@@ -68,6 +68,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ac-auto-show-menu 0.8)
+ '(ac-auto-start 2)
+ '(ac-quick-help-delay 0.1)
  '(auto-save-default nil)
  '(comint-move-point-for-output nil)
  '(comint-scroll-show-maximum-output nil)
@@ -324,3 +327,27 @@
 (require 'egg)
 
 (load "editorconfig")
+
+;; (require 'pos-tip)
+(add-to-list 'load-path "/Users/gaborcsardi/.emacs.d/")
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "/Users/gaborcsardi/.emacs.d//ac-dict")
+(ac-config-default)
+
+(set-face-attribute 'ac-candidate-face nil   :background "#00222c" :foreground "light gray")
+(set-face-attribute 'ac-selection-face nil   :background "SteelBlue4" :foreground "white")
+(set-face-attribute 'popup-tip-face    nil   :background "#003A4E" :foreground "light gray")
+
+(add-hook 'ess-mode (lambda () (add-to-list 'ac-sources 'ac-source-R)))
+
+(defvar sanityinc/fci-mode-suppressed nil)
+(defadvice popup-create (before suppress-fci-mode activate)
+  "Suspend fci-mode while popups are visible"
+  (set (make-local-variable 'sanityinc/fci-mode-suppressed) fci-mode)
+  (when fci-mode
+    (turn-off-fci-mode)))
+(defadvice popup-delete (after restore-fci-mode activate)
+  "Restore fci-mode when all popups have closed"
+  (when (and (not popup-instances) sanityinc/fci-mode-suppressed)
+    (setq sanityinc/fci-mode-suppressed nil)
+    (turn-on-fci-mode)))
