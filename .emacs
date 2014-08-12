@@ -276,6 +276,12 @@
                  '(("\\(%>%\\)" 1
                     font-lock-builtin-face t)))))
 
+(add-hook 'ess-mode-hook
+	  (lambda ()
+	    (font-lock-add-keywords nil
+                 '(("\\(\\$\\)" 1
+                    font-lock-comment-delimiter-face t)))))
+
 (add-hook 'ess-mode-hook 'pretty-things)
 (add-hook 'inferior-ess-mode-hook 'pretty-things)
 
