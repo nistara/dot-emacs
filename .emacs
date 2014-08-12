@@ -5,6 +5,7 @@
 ; ess, to set indentation to two spaces
 (setq ess-default-style 'DEFAULT)
 (setq ess-indent-level 2)
+(setq ess-history-directory "~/.R/")
 
 ;; Magical shift+ENTER
 ;; http://kieranhealy.org/blog/archives/2009/10/12/make-shift-enter-do-a-lot-in-ess/
