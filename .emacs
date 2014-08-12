@@ -105,13 +105,6 @@
  '(font-lock-comment-face ((t (:slant italic))))
  '(linum ((t (:inherit (shadow default) :background "#181a26" :height 0.9)))))
 
-;; auto-complete for ESS (and more?)
-;; This is very slow, so I turned it off
-;; (add-to-list 'load-path "~/.emacs.d")
-;; (require 'auto-complete-config)
-;; (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
-;; (ac-config-default)
-
 ;; dark theme
 (load-theme 'deeper-blue)
 
