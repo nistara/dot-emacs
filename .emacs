@@ -244,10 +244,16 @@
 ;; Pretty arrows and magrittr pipes in R
 (defvar pretty-alist
   (cl-pairlis '() '()))
-(add-to-list 'pretty-alist '("%>%" . "⇉"))
-(add-to-list 'pretty-alist '("<-" . "←"))
-(add-to-list 'pretty-alist '("->" . "→"))
-(add-to-list 'pretty-alist '("<<-" . "↞"))
+(add-to-list 'pretty-alist '("%>%" . ?⇉))
+(add-to-list 'pretty-alist '("<-" . ?←))
+(add-to-list 'pretty-alist '("->" . ?→))
+(add-to-list 'pretty-alist '("<<-" . ?↞))
+(add-to-list 'pretty-alist '("::" . ?∷))
+(add-to-list 'pretty-alist '("\\$" . ?$))
+;; (add-to-list 'pretty-alist '("\\[\\[" . ?))
+;; (add-to-list 'pretty-alist '("\\]\\]" . ?))
+;; (add-to-list 'pretty-alist '%||%' . ?))
+;; (add-to-list 'pretty-alist '%&&%' . ?))
 (defun pretty-things ()
   (mapc
    (lambda (x)
@@ -255,16 +261,12 @@
            (char (cdr x)))
        (font-lock-add-keywords
         nil
-        `((,(concat "\\(^\\|[^a-zA-Z0-9]\\)\\(" word "\\)[a-zA-Z]")
+        `((,(concat "\\(" word "\\)")
             (0 (progn
-                 (decompose-region (match-beginning 2) (match-end 2))
-                 nil)))))
-       (font-lock-add-keywords
-        nil
-        `((,(concat "\\(^\\|[^a-zA-Z0-9]\\)\\(" word "\\)[^a-zA-Z]")
-            (0 (progn
-                 (compose-region (match-beginning 2) (match-end 2)
-                  ,char)
+                 (compose-region (match-beginning 1) (match-end 1)
+				 (vector ?\t `(Bc . Bc) ,char `(Br . Bl) ?\u2009
+					 `(Bl . Br) ?\u2009 `(Bl . Br) ?\u2009
+					 `(Br . Bl) ?\u2009))
                  nil)))))))
    pretty-alist))
 
